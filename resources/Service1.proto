@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_package = "Entrance";
+
+service EntranceControl {
+    rpc FacialRecognitionAccess(stream FacialRequest) returns (AccessResponse);
+	rpc PasswordInput(stream PasswordRequest) returns (AccessResponse);
+}
+
+message FacialRequest {
+    string studentID = 1;
+
+}
+
+message PasswordRequest {
+    string roomID = 1;
+    string password = 2;
+}
+
+message AccessResponse {
+    string status = 1;
+}
+

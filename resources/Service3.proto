@@ -1,0 +1,21 @@
+syntax = "proto3";
+option java_package = "remote";
+message HeatingSystemRequest {
+    string roomID = 1;
+    float desiredTemperature = 2;
+}
+
+message AirflowRateRequest {
+    string roomID = 1;
+    float desiredAirflowRate = 2;
+}
+
+message ControlResponse {
+    string status = 1;
+    float currentValue = 2;
+}
+
+service RemoteControl {
+    rpc HeatingSystemControl(stream HeatingSystemRequest) returns (stream ControlResponse);
+    rpc AirflowRateControl(stream AirflowRateRequest) returns (stream ControlResponse);
+}
